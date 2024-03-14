@@ -10,6 +10,7 @@
 
 import data from "./data.js";
 import Cardlist from "./components/Cardlist.js";
+import Card from "./components/Card.js";
 
 // Add license info to each data object.
 const license = {
@@ -22,8 +23,21 @@ const newData = data.map((imgData) => {
 });
 
 const mainContent = document.querySelector(".main-content");
+const loadButton = document.querySelector("#load");
+const loader = document.querySelector(".loader");
 
-mainContent.innerHTML = Cardlist(newData);
+const pageLoad = () => {
+  loader.classList.toggle("hidden");
+  loadButton.classList.toggle("hidden");
+  setTimeout(() => {
+    mainContent.innerHTML = Cardlist(newData);
+  }, 3000);
+};
+
+/**
+ * Custom auto-load made by Connor
+ */
+pageLoad();
 
 /**
  * Light/dark mode feature.
